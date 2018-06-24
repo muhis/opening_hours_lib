@@ -1,15 +1,18 @@
+import json
 import unittest
 from mock import patch, Mock
 from . import tools
 from .tools import (
     parse,
     prettify_time,
-    full_example_dict,
     flatten_dict,
     parse_periods,
     prettify_periods,
     stringify_parsed_json
 )
+from typing import Dict
+
+from mock import Mock, patch
 
 FIXTURE_FLAT_DICT = [
     {'type': 'open', 'value': 36000, 'day': 'tuesday'},
@@ -70,6 +73,12 @@ Wednesday: 10 AM - 6 PM
 """
 
 
+def full_example_dict() ->Dict:
+    with open("full_example.json") as json_file:
+        data = json.load(json_file)
+    return data
+
+
 class TestParse(unittest.TestCase):
     def test_prettify_time(self):
         self.assertEqual(prettify_time(36000), '10 AM')
@@ -102,6 +111,26 @@ class TestParse(unittest.TestCase):
         string_output = stringify_parsed_json(PRETTIFIED_DICT)
         self.assertEqual(
             string_output, STRINGIFIED_OUTPUT
+        )
+
+    def full_test(self):
+        """
+        integration test for overall functionality.
+        """
+        fixture = full_example_dict()
+        parsed_data = parse(fixture)
+        stringified_data = stringify_parsed_json(parsed_data)
+        self.assertEqual(
+            stringified_data,
+            '''A resturant is open:
+            Monday: Closed
+            Tuesday: 10 AM - 6 PM
+            Wednesday: Closed
+            Thursday: 10 AM - 6 PM
+            Friday: 10 AM - 1 AM
+            Saturday: 9 AM - 11 AM, 4 PM - 1 AM
+            Sunday: 12 PM - 9 PM
+            '''
         )
 
 

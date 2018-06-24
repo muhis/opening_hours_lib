@@ -7,12 +7,6 @@ from datetime import datetime
 from typing import Dict, List, Tuple
 
 
-def full_example_dict() ->Dict:
-    with open("parsing_tools/full_example.json") as json_file:
-        data = json.load(json_file)
-    return data
-
-
 def flatten_dict(opening_hours: Dict) -> List:
     periods_list = []  # type: List[Dict]
     for day, value in opening_hours.items():
@@ -66,9 +60,3 @@ def stringify_parsed_json(pretty_dict: Dict) ->str:
     for day, opening_hours in pretty_dict.items():
         output += f'{day.title()}: {opening_hours}\n'
     return output
-
-
-if __name__ == '__main__':
-    example_json = full_example_dict()
-    print(stringify_parsed_json(parse(example_json)))
-
