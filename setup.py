@@ -16,7 +16,7 @@ setup(
         'Programming Language :: Python :: 3.6',
     ],
     packages=["parsing_tools"],
-    setup_requires=['pytest-runner'],
-    tests_require=['pytest'],
+    setup_requires=['pytest-runner', 'mock'],
+    tests_require=['pytest', 'mock'],
     url='https://github.com/muhis/opening_hours_lib'
 )
