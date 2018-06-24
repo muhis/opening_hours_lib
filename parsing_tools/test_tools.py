@@ -4,10 +4,10 @@ from mock import patch, Mock
 from . import tools
 from .tools import (
     parse,
-    prettify_time,
-    flatten_dict,
-    parse_periods,
-    prettify_periods,
+    _prettify_time,
+    _flatten_dict,
+    _parse_periods,
+    _prettify_periods,
     stringify_parsed_json
 )
 from typing import Dict
@@ -98,9 +98,9 @@ class TestParse(unittest.TestCase):
             PRETTIFIED_DICT
         )
 
-    @patch.object(tools, 'flatten_dict')
-    @patch.object(tools, 'parse_periods')
-    @patch.object(tools, 'prettify_periods')
+    @patch.object(tools, '_flatten_dict')
+    @patch.object(tools, '_parse_periods')
+    @patch.object(tools, '_prettify_periods')
     def test_parse(self, mock_flatten, mock_parse_periods, mock_prettify):
         parse({})
         mock_flatten.assert_called_once()

@@ -7,7 +7,7 @@ from datetime import datetime
 from typing import Dict, List, Tuple
 
 
-def flatten_dict(opening_hours: Dict) -> List:
+def _flatten_dict(opening_hours: Dict) -> List:
     """
     Flatten input dictionary into a list with the day within the time dict.
     """
@@ -21,7 +21,7 @@ def flatten_dict(opening_hours: Dict) -> List:
     return periods_list
 
 
-def parse_periods(flat_dicts: List[Dict]) ->List:
+def _parse_periods(flat_dicts: List[Dict]) ->List:
     """
     Parse a list of times into a tuple of opening and closing hours.
     """
@@ -32,7 +32,7 @@ def parse_periods(flat_dicts: List[Dict]) ->List:
     return periods
 
 
-def prettify_time(epoch_time: float) -> str:
+def _prettify_time(epoch_time: float) -> str:
     """
     Return a pretty string from an epoch time float
     """
@@ -40,7 +40,7 @@ def prettify_time(epoch_time: float) -> str:
     return time_object.strftime('%I %p').lstrip('0')
 
 
-def prettify_periods(periods: List[Tuple]) -> Dict:
+def _prettify_periods(periods: List[Tuple]) -> Dict:
     """
     Merge periods into a descriptive pretty dict.
     """
@@ -64,9 +64,9 @@ def parse(json: Dict) ->Dict:
     """
     Takes a dict payload and returns the pretty representation in dict format.
     """
-    flatten_dicts = flatten_dict(json)
-    parsed_periods = parse_periods(flatten_dicts)
-    pretty_periods = prettify_periods(parsed_periods)
+    flatten_dicts = _flatten_dict(json)
+    parsed_periods = _parse_periods(flatten_dicts)
+    pretty_periods = _prettify_periods(parsed_periods)
     return pretty_periods
 
 
