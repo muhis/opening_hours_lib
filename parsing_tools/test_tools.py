@@ -81,20 +81,20 @@ def full_example_dict() ->Dict:
 
 class TestParse(unittest.TestCase):
     def test_prettify_time(self):
-        self.assertEqual(prettify_time(36000), '10 AM')
+        self.assertEqual(_prettify_time(36000), '10 AM')
 
     def test_flatten_dict(self):
-        self.assertEqual(flatten_dict(FIXTURE_JSON), FIXTURE_FLAT_DICT)
+        self.assertEqual(_flatten_dict(FIXTURE_JSON), FIXTURE_FLAT_DICT)
 
     def test_parse_periods(self):
         self.assertEqual(
-            parse_periods(FIXTURE_FLAT_DICT),
+            _parse_periods(FIXTURE_FLAT_DICT),
             PARSED_PERIODS_FIXTURE
         )
 
     def test_prettify_periods(self):
         self.assertEqual(
-            prettify_periods(PARSED_PERIODS_FIXTURE),
+            _prettify_periods(PARSED_PERIODS_FIXTURE),
             PRETTIFIED_DICT
         )
 

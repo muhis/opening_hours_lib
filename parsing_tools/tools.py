@@ -48,8 +48,8 @@ def _prettify_periods(periods: List[Tuple]) -> Dict:
     result = {}  # type: Dict[str, str]
     for period in periods:
         opening, closing = period
-        opening_time = prettify_time(opening['value'])
-        closing_time = prettify_time(closing['value'])
+        opening_time = _prettify_time(opening['value'])
+        closing_time = _prettify_time(closing['value'])
         day = opening['day']
         if not temp_dict.get(day):
             temp_dict.update({day: f'{opening_time} - {closing_time}'})
