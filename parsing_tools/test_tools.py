@@ -1,6 +1,7 @@
 import unittest
 from mock import patch, Mock
-from parsing_tools.tools import (
+from . import tools
+from .tools import (
     parse,
     prettify_time,
     full_example_dict,
@@ -88,9 +89,9 @@ class TestParse(unittest.TestCase):
             PRETTIFIED_DICT
         )
 
-    @patch('parsing_tools.tools.flatten_dict')
-    @patch('parsing_tools.tools.parse_periods')
-    @patch('parsing_tools.tools.prettify_periods')
+    @patch.object(tools, 'flatten_dict')
+    @patch.object(tools, 'parse_periods')
+    @patch.object(tools, 'prettify_periods')
     def test_parse(self, mock_flatten, mock_parse_periods, mock_prettify):
         parse({})
         mock_flatten.assert_called_once()
