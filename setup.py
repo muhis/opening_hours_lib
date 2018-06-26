@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="opening hours parsing",
-    version='0.0.2',
+    version='0.0.3',
     description="Parse opening hours",
     author="Mohammed Salman",
     author_email="m.salman@zinkki.com",
